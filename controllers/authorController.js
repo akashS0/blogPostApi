@@ -31,6 +31,16 @@ var createAuthor = async (req, res) => {
         responseObject.message = "Email address is not valid";
         return res.status(400).send(responseObject);
     }
+    var data = await author.findOne({
+        where: {
+            email
+        },
+    });
+
+    if(data){
+        responseObject.message = "Email already exsist";
+        return res.status(400).send(responseObject);
+    }
 
     await author.create({
         uuid,
