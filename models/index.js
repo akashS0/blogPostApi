@@ -19,13 +19,11 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.bloggers = require('./bloggers')(sequelize, Sequelize);
+db.authors = require('./author')(sequelize, Sequelize);
+
 db.sequelize.sync()
 .then(()=>{
-    console.log("synced with blogger");
+    console.log("synced");
 })
 
-db.authors = require('./author')(sequelize, Sequelize);
-db.sequelize.sync()
-.then(()=>{
-    console.log("synced with author");
-})
+module.exports = db;
