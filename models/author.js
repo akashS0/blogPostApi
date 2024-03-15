@@ -13,16 +13,6 @@ const authors = sequelize.define("authors",{
     },
     email:{
         type: Sequelize.STRING
-    },
-    created_at: {
-        type: 'TIMESTAMP',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-        allowNull: false
-    },
-    updated_at: {
-        type: 'TIMESTAMP',
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-        allowNull: false
     }
 }, {
     created_at: 'created_at',

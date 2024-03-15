@@ -20,7 +20,6 @@ app.post("/author", authorController.createAuthor)
 app.delete("/author/:uuid", authorController.deleteAuthor)
 app.get("/author/:uuid", authorController.viewAuthor)
 app.patch("/author/:uuid", authorController.updateAuthor)
-
 app.get("/author", authorController.listAuthor)
 
 //blogger API's

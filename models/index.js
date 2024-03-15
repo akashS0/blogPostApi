@@ -21,6 +21,7 @@ db.sequelize = sequelize;
 db.bloggers = require('./bloggers')(sequelize, Sequelize);
 db.authors = require('./author')(sequelize, Sequelize);
 
+db.bloggers.belongsTo(db.authors, { foreignKey: 'author_id' });
 db.sequelize.sync()
 .then(()=>{
     console.log("synced");

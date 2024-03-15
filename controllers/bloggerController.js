@@ -1,4 +1,5 @@
 var db = require("../models");
+const author = db.authors;
 const blogger = db.bloggers;
 const utils = require("../utils");
 
@@ -8,7 +9,6 @@ var createBlog = async (req, res) =>{
     let responseObject = {
         success: false
     };
-    console.log(req.body)
     if(!title || !content || !author_id){
         responseObject.message = "Data cannot be empty";
         return res.status(400).send(responseObject);
@@ -59,6 +59,10 @@ var viewBlog = async (req, res) => {
         where: {
           uuid: uuid
         },
+        include: [{
+            model: author,
+            attributes: ['uuid', 'name', 'email']
+        }]
       });
     if(data === null){
         responseObject.message = "uuid not found";
