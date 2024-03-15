@@ -1,0 +1,27 @@
+{
+  "name": "blogPostApi",
+  "version": "1.0.0",
+  "description": "CRUD operation on blog post",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akashS0/blogPostApi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akashS0/blogPostApi/issues"
+  },
+  "homepage": "https://github.com/akashS0/blogPostApi#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.3",
+    "mysql2": "^3.9.2",
+    "nodemon": "^3.1.0",
+    "sequelize": "^6.37.1"
+  }
+}
