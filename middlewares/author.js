@@ -11,8 +11,7 @@ module.exports = {
         const author_uuid = req.headers?.author_uuid;
         if (!author_uuid) {
             responseObject.message = 'Not Authorised';
-            // TODO: update the status code for not authorized
-            return res.status(400).send(responseObject);
+            return res.status(401).send(responseObject);
         }
 
         const authorData = await author.findOne({

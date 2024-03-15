@@ -37,7 +37,7 @@ var createAuthor = async (req, res) => {
         },
     });
 
-    if(data){
+    if (data) {
         responseObject.message = "Email already exsist";
         return res.status(400).send(responseObject);
     }

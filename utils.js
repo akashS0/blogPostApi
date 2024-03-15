@@ -4,10 +4,10 @@ module.exports = {
         return v4();
     },
 
-    isEmailValid: function(email) {
+    isEmailValid: function (email) {
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
-    
+
 }
 

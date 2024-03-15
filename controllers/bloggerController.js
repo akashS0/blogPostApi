@@ -4,16 +4,13 @@ const blogger = db.bloggers;
 const utils = require("../utils");
 
 var createBlog = async (req, res) => {
-    console.log('Within blog controller')
     const uuid = utils.generateUuid();
     var { title, content, author_id } = req.body;
     let responseObject = {
         success: false
     };
 
-    console.log(req.body)
-
-    if (!title || !content ) {
+    if (!title || !content) {
         responseObject.message = "Data cannot be empty";
         return res.status(400).send(responseObject);
     }
@@ -24,7 +21,7 @@ var createBlog = async (req, res) => {
         responseObject.message = "Data cannot be empty";
         return res.status(400).send(responseObject);
     }
-    
+
     await blogger.create({
         uuid,
         title,
@@ -42,7 +39,6 @@ var deleteBlog = async (req, res) => {
         success: false
     };
 
-
     const uuid = req.params['uuid'];
     var data = await blogger.findOne({
         where: {
@@ -54,7 +50,7 @@ var deleteBlog = async (req, res) => {
         return res.status(400).send(responseObject);
     }
 
-    if(req.body.author_id !== data.author_id){
+    if (req.body.author_id !== data.author_id) {
         responseObject.message = "not permitted";
         return res.status(400).send(responseObject);
     }
@@ -97,14 +93,14 @@ var updateBlog = async (req, res) => {
         success: false
     };
     const uuid = req.params['uuid'];
-    
+
     var data = await blogger.findOne({
         where: {
             uuid: uuid
         },
     });
 
-    if(req.body.author_id !== data.author_id){
+    if (req.body.author_id !== data.author_id) {
         responseObject.message = "not permitted";
         return res.status(400).send(responseObject);
     }
@@ -113,7 +109,7 @@ var updateBlog = async (req, res) => {
         responseObject.message = "uuid not found";
         return res.status(400).send(responseObject);
     }
-    const { title, content} = req.body;
+    const { title, content } = req.body;
 
     await blogger.update({
         title,

@@ -3,16 +3,16 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize('blogCrud', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql',
-    pool:{max:5, min:0, idle:100000}
+    pool: { max: 5, min: 0, idle: 100000 }
 });
 
 sequelize.authenticate()
-.then(()=>{
-    console.log("connected");
-})
-.catch(err=>{
-    console.log("Error"+err);
-}); 
+    .then(() => {
+        console.log("connected");
+    })
+    .catch(err => {
+        console.log("Error" + err);
+    });
 
 const db = {};
 db.Sequelize = Sequelize;
@@ -23,8 +23,8 @@ db.authors = require('./author')(sequelize, Sequelize);
 
 db.bloggers.belongsTo(db.authors, { foreignKey: 'author_id' });
 db.sequelize.sync()
-.then(()=>{
-    console.log("synced");
-})
+    .then(() => {
+        console.log("synced");
+    })
 
 module.exports = db;

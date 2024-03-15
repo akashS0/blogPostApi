@@ -12,7 +12,7 @@ const authorMiddleware = require("./middlewares/author");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: '2mb' }));
 
-app.get("/", (req, res)=>{
+app.get("/", (req, res) => {
     res.send("Home Page");
 });
 
@@ -30,6 +30,6 @@ app.get("/blog/:uuid", authorMiddleware.validateAuthor, blogController.viewBlog)
 app.patch("/blog/:uuid", authorMiddleware.validateAuthor, blogController.updateBlog)
 app.get("/blog", authorMiddleware.validateAuthor, blogController.listBlog)
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log(`App is running on PORT: ${PORT}`);
 });
