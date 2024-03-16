@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "308a39c8-0819-4ab1-9764-da53859e0016",
+		"name": "Blogs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28296365"
+	},
+	"item": [
+		{
+			"name": "Create Author",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"iamanauthor@gmail.com\",\r\n    \"name\": \"Author\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/author"
+			},
+			"response": []
+		},
+		{
+			"name": "List Authors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/author"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Author Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/author/f81c985d-d0ea-4394-8940-ef8fa40cb375"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Author",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"My New Name\",\r\n    \"email\": \"mynewemailaddress@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/author/0ea84b1f-b198-4382-b8dd-7d8c68d0c81e"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete author",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3000/author/2a37878c-26ca-4a54-ba95-d87521d53997"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Blog",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "author_uuid",
+						"value": "f81c985d-d0ea-4394-8940-ef8fa40cb375",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Travel Together\",\r\n    \"content\": \"Hello everyone, let's travel together and unleash the wilderness together. The world has a lot to offer and we must surely invest our time to travel.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/blog"
+			},
+			"response": []
+		},
+		{
+			"name": "List Blogs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "author_uuid",
+						"value": "f81c985d-d0ea-4394-8940-ef8fa40cb375",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": "http://localhost:3000/blog"
+			},
+			"response": []
+		},
+		{
+			"name": "Blog Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/blog/c44e750f-c70b-4ba2-b536-d17bcd857aec"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Blog",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "author_uuid",
+						"value": "f81c985d-d0ea-4394-8940-ef8fa40cb375",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3000/blog/d679794c-3337-490e-956b-b40fa5dc6dd3"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Blog",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "author_uuid",
+						"value": "0ea84b1f-b198-4382-b8dd-7d8c68d0c81e",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Shall I update?\",\r\n    \"content\": \"Do you really think I should update my content? Is improvisation really important?\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/blog/c44e750f-c70b-4ba2-b536-d17bcd857aec"
+			},
+			"response": []
+		}
+	]
+}
