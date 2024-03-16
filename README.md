@@ -55,7 +55,7 @@ Using the below mentioned APIs CRUD operations can be performed. However each bl
 To set up the project locally, follow these steps:
 
 1. Clone the repo using the URL: `www.test.com`.
-2. Ensure that Node.js is installed on the machine.
+2. Ensure that Node.js is installed on the machine (`Node version 16 preferred`).
 3. Run `npm install` to install the Node modules and dependencies.
 4. Ensure that MySQL database is running on the local machine.
 5. Create a new file `.env` in the root level of the folder.
