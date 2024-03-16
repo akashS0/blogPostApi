@@ -48,10 +48,10 @@ var createAuthor = async (req, res) => {
         name,
         email
     });
-    responseObject.message = 'SuccessFully Entered data';
+    responseObject.message = 'Author created successfully.';
     responseObject.success = true;
 
-    return res.status(200).send(responseObject);
+    return res.status(201).send(responseObject);
 }
 
 var deleteAuthor = async (req, res) => {
@@ -65,8 +65,8 @@ var deleteAuthor = async (req, res) => {
         },
     });
     if (data === null) {
-        responseObject.message = "uuid not found";
-        return res.status(400).send(responseObject);
+        responseObject.message = "Author not found";
+        return res.status(404).send(responseObject);
     }
 
     data = await author.destroy({
@@ -75,7 +75,7 @@ var deleteAuthor = async (req, res) => {
         }
     })
 
-    responseObject.message = "Data deleted successfully"
+    responseObject.message = "Author deleted successfully"
     responseObject.success = true;
     return res.status(200).send(responseObject);
 }
@@ -94,8 +94,8 @@ var viewAuthor = async (req, res) => {
         }]
     });
     if (data === null) {
-        responseObject.message = "uuid not found";
-        return res.status(400).send(responseObject);
+        responseObject.message = "Author not found";
+        return res.status(404).send(responseObject);
     }
     responseObject.data = data;
     responseObject.success = true;
@@ -113,8 +113,8 @@ var updateAuthor = async (req, res) => {
         },
     });
     if (data === null) {
-        responseObject.message = "uuid not found";
-        return res.status(400).send(responseObject);
+        responseObject.message = "Author not found";
+        return res.status(404).send(responseObject);
     }
     var { name, email } = req.body;
     if (email) {
@@ -122,6 +122,11 @@ var updateAuthor = async (req, res) => {
         if (!utils.isEmailValid(email)) {
             responseObject.message = "Email address is not valid";
             return res.status(400).send(responseObject);
+        }
+
+        if (email !== data.email) {
+            responseObject.message = "Email address cannot be updated";
+            return res.status(400).send(responseObject);   
         }
     }
     if (name) {
@@ -140,7 +145,7 @@ var updateAuthor = async (req, res) => {
             uuid
         }
     })
-    responseObject.message = "update successfully"
+    responseObject.message = "Author updated."
     responseObject.success = true
     return res.status(200).send(responseObject);
 }
@@ -151,8 +156,8 @@ var listAuthor = async (req, res) => {
     };
     var data = await author.findAll({});
     if (data === null) {
-        responseObject.message = "no data exist";
-        return res.status(400).send(responseObject);
+        responseObject.message = "Author not found";
+        return res.status(404).send(responseObject);
     }
     responseObject.data = data;
     responseObject.success = true;

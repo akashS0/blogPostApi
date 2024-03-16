@@ -10,15 +10,11 @@ var createBlog = async (req, res) => {
         success: false
     };
 
-    if (!title || !content) {
-        responseObject.message = "Data cannot be empty";
-        return res.status(400).send(responseObject);
-    }
-    title = title.trim();
-    content = content.trim();
+    title = title?.trim();
+    content = content?.trim();
 
     if (!title || !content) {
-        responseObject.message = "Data cannot be empty";
+        responseObject.message = "Blog content be empty";
         return res.status(400).send(responseObject);
     }
 
@@ -28,7 +24,7 @@ var createBlog = async (req, res) => {
         content,
         author_id
     })
-    responseObject.message = 'SuccessFully Entered data';
+    responseObject.message = 'Blog created successfully.';
     responseObject.success = true;
 
     return res.status(200).send(responseObject);
@@ -46,13 +42,13 @@ var deleteBlog = async (req, res) => {
         },
     });
     if (data === null) {
-        responseObject.message = "uuid not found";
+        responseObject.message = "Blog not found";
         return res.status(400).send(responseObject);
     }
 
     if (req.body.author_id !== data.author_id) {
-        responseObject.message = "not permitted";
-        return res.status(400).send(responseObject);
+        responseObject.message = "Not Permitted";
+        return res.status(401).send(responseObject);
     }
 
     data = await blogger.destroy({
@@ -62,6 +58,7 @@ var deleteBlog = async (req, res) => {
     })
 
     responseObject.success = true;
+    responseObject.message = 'Blog deleted successfully.';
     return res.status(200).send(responseObject);
 }
 
@@ -80,7 +77,7 @@ var viewBlog = async (req, res) => {
         }]
     });
     if (data === null) {
-        responseObject.message = "uuid not found";
+        responseObject.message = "Blog not found";
         return res.status(400).send(responseObject);
     }
     responseObject.data = data;
@@ -100,16 +97,25 @@ var updateBlog = async (req, res) => {
         },
     });
 
-    if (req.body.author_id !== data.author_id) {
-        responseObject.message = "not permitted";
-        return res.status(400).send(responseObject);
+    if (!data) {
+        responseObject.message = "Blog not found";
+        return res.status(404).send(responseObject);
     }
 
-    if (data === null) {
-        responseObject.message = "uuid not found";
+    if (req.body.author_id !== data.author_id) {
+        responseObject.message = "Not Permitted";
+        return res.status(401).send(responseObject);
+    }
+
+    let { title, content } = req.body;
+
+    title = title?.trim();
+    content = content?.trim();
+
+    if (!title || !content) {
+        responseObject.message = "Blog content be empty";
         return res.status(400).send(responseObject);
     }
-    const { title, content } = req.body;
 
     await blogger.update({
         title,
@@ -119,7 +125,7 @@ var updateBlog = async (req, res) => {
             uuid
         }
     })
-    responseObject.message = "update successfully"
+    responseObject.message = "Blog Updated."
     responseObject.success = true
     return res.status(200).send(responseObject);
 }
@@ -135,8 +141,8 @@ var listBlog = async (req, res) => {
         }]
     });
     if (data === null) {
-        responseObject.message = "no data exist";
-        return res.status(400).send(responseObject);
+        responseObject.message = "Blog not found.";
+        return res.status(404).send(responseObject);
     }
     responseObject.data = data;
     responseObject.success = true;
