@@ -16,6 +16,10 @@ module.exports = (sequelize, Sequelize)=>{
         },
         author_id: {
             type: Sequelize.INTEGER,
+            references: {
+                model: 'author',
+                key: 'id'
+            }
         },
     }, {
         created_at: 'created_at',

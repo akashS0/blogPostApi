@@ -14,10 +14,10 @@ const sequelize = new Sequelize(dbDatabase, dbUsername, dbPassword, {
 
 sequelize.authenticate()
     .then(() => {
-        console.log("connected");
+        console.log("Database connection established");
     })
     .catch(err => {
-        console.log("Error" + err);
+        console.log("Error establishing database connection" + err);
     });
 
 const db = {};
@@ -31,7 +31,7 @@ db.bloggers.belongsTo(db.authors, { foreignKey: 'author_id' });
 db.authors.hasMany(db.bloggers, { foreignKey: 'author_id' });
 db.sequelize.sync()
     .then(() => {
-        console.log("synced");
+        console.log("Database Synced sucessfully.");
     })
 
 module.exports = db;

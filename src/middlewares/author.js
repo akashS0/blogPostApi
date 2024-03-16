@@ -7,7 +7,6 @@ module.exports = {
             success: false
         };
 
-        console.log('within validate author middleware')
         const author_uuid = req.headers?.author_uuid;
         if (!author_uuid) {
             responseObject.message = 'Not Authorised';
@@ -26,7 +25,6 @@ module.exports = {
         }
 
         req.body.author_id = authorData.id;
-        console.log('Going to controller')
         next();
     }
 }
