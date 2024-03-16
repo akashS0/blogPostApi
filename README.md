@@ -69,10 +69,10 @@ To set up the project locally, follow these steps:
     DB_DATABASE = blogging_platform
     DB_DIALECT = mysql
     ```
-
-7. Run the following command to start the application: `npm run start`.
-8. Use the shared Postman collection to run the APIs (refer the file `Blog.postman_collection.json`).
-9. Or just copy the below code and import it in the postman.
+7. Create a new database named: `blogging_platform`.
+8. Run the following command to start the application: `npm run start`.
+9. Use the shared Postman collection to run the APIs (refer the file `Blog.postman_collection.json`).
+10. Or just copy the below code and import it in the postman.
 ```
 {
 	"info": {
